@@ -9,7 +9,7 @@ jobs:
         with:
           python-version: '3.8'
           architecture: 'x64'
-      - name: run
+      - name: set-env
         env:
           URL: ${{secrets.URL}}
           ID: ${{secrets.ID}}
@@ -25,6 +25,7 @@ jobs:
           TEXT1: ${{secrets.TEXT1}}
           TEXT2: ${{secrets.TEXT2}}
           TEXT3: ${{secrets.TEXT3}}
+        run: echo "Environment variables set"
       - run: |
           pip install get-chrome-driver --upgrade
           pip install -r requirements.txt

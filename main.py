@@ -5,20 +5,20 @@ import requests
 from time import sleep
 import os
 
-url = os.environ.get("URL")
-id = os.environ.get("ID")
-password = os.environ.get("PASSWORD")
-id_xpath = os.environ.get("ID_XPATH")
-pass_xpath = os.environ.get("PASS_XPATH")
-login_xpath = os.environ.get("LOGIN_XPATH")
-line_notify_token = os.environ.get("LINE_NOTIFY_TOKEN")
-calendar_xpath = os.environ.get("CALENDAR_XPATH")
-word_1 = os.environ.get("WORD_1")
-word_2 = os.environ.get("WORD_2")
-word_3 = os.environ.get("WORD_3")
-text1 = os.environ.get("TEXT1")
-text2 = os.environ.get("TEXT2")
-text3 = os.environ.get("TEXT3")
+url = str(os.environ.get("URL"))
+id = str(os.environ.get("ID"))
+password = str(os.environ.get("PASSWORD"))
+id_xpath = str(os.environ.get("ID_XPATH"))
+pass_xpath = str(os.environ.get("PASS_XPATH"))
+login_xpath = str(os.environ.get("LOGIN_XPATH"))
+line_notify_token = str(os.environ.get("LINE_NOTIFY_TOKEN"))
+calendar_xpath = str(os.environ.get("CALENDAR_XPATH"))
+word_1 = str(os.environ.get("WORD_1"))
+word_2 = str(os.environ.get("WORD_2"))
+word_3 = str(os.environ.get("WORD_3"))
+text1 = str(os.environ.get("TEXT1"))
+text2 = str(os.environ.get("TEXT2"))
+text3 = str(os.environ.get("TEXT3"))
 
 
 def login():

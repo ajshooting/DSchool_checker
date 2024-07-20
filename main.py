@@ -5,20 +5,20 @@ import requests
 from time import sleep
 import os
 
-url = secrets.URL
-id = secrets.ID
-password = secrets.PASSWORD
-id_xpath = secrets.ID_XPATH
-pass_xpath = secrets.PASS_XPATH
-login_xpath = secrets.LOGIN_XPATH
-line_notify_token = secrets.LINE_NOTIFY_TOKEN
-calendar_xpath = secrets.CALENDAR_XPATH
-word_1 = secrets.WORD_1
-word_2 = secrets.WORD_2
-word_3 = secrets.WORD_3
-text1 = secrets.TEXT1
-text2 = secrets.TEXT2
-text3 = secrets.TEXT3
+url = os.environ.get("URL")
+id = os.environ.get("ID")
+password = os.environ.get("PASSWORD")
+id_xpath = os.environ.get("ID_XPATH")
+pass_xpath = os.environ.get("PASS_XPATH")
+login_xpath = os.environ.get("LOGIN_XPATH")
+line_notify_token = os.environ.get("LINE_NOTIFY_TOKEN")
+calendar_xpath = os.environ.get("CALENDAR_XPATH")
+word_1 = os.environ.get("WORD_1")
+word_2 = os.environ.get("WORD_2")
+word_3 = os.environ.get("WORD_3")
+text1 = os.environ.get("TEXT1")
+text2 = os.environ.get("TEXT2")
+text3 = os.environ.get("TEXT3")
 
 
 def login():

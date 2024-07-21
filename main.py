@@ -28,6 +28,12 @@ options = Options()
 options.add_argument('--headless')
 driver = webdriver.Chrome(options=options)
 
+if "URL" in os.environ:
+    print("URL environment variable is set.")
+    print(m[0])
+else:
+    print("URL environment variable is not set.")
+
 
 # -- login --
 driver.get(url)
@@ -51,13 +57,11 @@ try:
             classes = cell.get_attribute("class")
             if classes and word_1 in classes:
                 m = text1 + str(row_idx - 1) + "日]" + str(col_idx + 8) + "時~"
-                print(m)
                 found = True
                 data = {"message": m}
                 requests.post(line_notify_api, headers=headers, data=data)
             # if classes and word2 in classes:
             #     m = text2 + str(row_idx-1) + "日]" + str(col_idx + 8) + "時~"
-            #     print(m)
             # if classes and word3 in classes:
             #     m = text3 + str(row_idx-1) + "日]" + str(col_idx + 8) + "時~"
             #     found = True

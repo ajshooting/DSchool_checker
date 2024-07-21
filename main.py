@@ -1,10 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from get_chrome_driver import GetChromeDriver
+import chromedriver_binary
 import requests
 from time import sleep
 import os
+
+
 
 url = str(os.environ.get("URL"))
 id = str(os.environ.get("ID"))
@@ -22,31 +24,24 @@ text2 = str(os.environ.get("TEXT2"))
 text3 = str(os.environ.get("TEXT3"))
 
 
-def login():
-    driver.get(url)
-    driver.implicitly_wait(5)
-    driver.find_element(By.XPATH, id_xpath).send_keys(id)
-    driver.find_element(By.XPATH, pass_xpath).send_keys(password)
-    driver.find_element(By.XPATH, login_xpath).click()
-
 
 # --- begin program ---
-get_driver = GetChromeDriver()
-get_driver.install()
+options = Options()
+options.add_argument('--headless')
+driver = webdriver.Chrome(options=options)
 
-def driver_init():
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    return webdriver.Chrome(options=options)
 
-driver = driver_init()
+
 
 # -- login --
-login()
+driver.get(url)
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH, id_xpath).send_keys(id)
+driver.find_element(By.XPATH, pass_xpath).send_keys(password)
+driver.find_element(By.XPATH, login_xpath).click()
 
 # -- get info --
 sleep(1)
-driver.implicitly_wait(5)
 
 line_notify_api = "https://notify-api.line.me/api/notify"
 headers = {"Authorization": f"Bearer {line_notify_token}"}

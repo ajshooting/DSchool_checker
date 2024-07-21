@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from get_chrome_driver import GetChromeDriver
 import requests
 from time import sleep
 import os
@@ -30,9 +31,15 @@ def login():
 
 
 # --- begin program ---
-options = Options()
-options.add_argument("--headless")
-driver = webdriver.Chrome(options=options)
+get_driver = GetChromeDriver()
+get_driver.install()
+
+def driver_init():
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    return webdriver.Chrome(options=options)
+
+driver = driver_init()
 
 # -- login --
 login()

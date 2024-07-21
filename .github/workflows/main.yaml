@@ -1,15 +1,31 @@
-name: selenium-github-actions
-on: [push]
+name: test-selenium
+on: 
+  push:
+    branches:
+      - master
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-          architecture: 'x64'
-      - name: set-env
+      - 
+        name: Checkout Repository
+        uses: actions/checkout@v2
+      - 
+        name: Setup Python
+        uses: actions/setup-python@v2
+      - 
+        name: Install Chrome
+        run: |
+          sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo apt update
+          sudo apt-get install google-chrome-stable
+      - 
+        name: Install Package
+        run: |
+          pip install chromedriver-binary==94.*
+          pip install selenium
+      - 
+        name: set-env
         env:
           URL: ${{secrets.URL}}
           ID: ${{secrets.ID}}
@@ -26,7 +42,8 @@ jobs:
           TEXT2: ${{secrets.TEXT2}}
           TEXT3: ${{secrets.TEXT3}}
         run: echo "Environment variables set"
-      - run: |
-          pip install get-chrome-driver --upgrade
+      - 
+        name: Test Selenium
+        run: |
           pip install -r requirements.txt
           python3 main.py

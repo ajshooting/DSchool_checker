@@ -23,7 +23,7 @@ jobs:
       - 
         name: Install Package
         run: |
-          pip install chromedriver-binary==94.*
+          pip install chromedriver-binary==126.0.*
           pip install selenium
       - 
         name: set-env

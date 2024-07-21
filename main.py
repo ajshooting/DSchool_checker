@@ -28,12 +28,6 @@ options = Options()
 options.add_argument('--headless')
 driver = webdriver.Chrome(options=options)
 
-if "URL" in os.environ:
-    print("URL environment variable is set.")
-    print(m[0])
-else:
-    print("URL environment variable is not set.")
-
 
 # -- login --
 driver.get(url)

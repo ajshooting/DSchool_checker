@@ -26,7 +26,7 @@ jobs:
           pip install chromedriver-binary==126.0.*
           pip install selenium
       - 
-        name: set-env
+        name: Test Selenium
         env:
           URL: ${{secrets.URL}}
           ID: ${{secrets.ID}}
@@ -42,9 +42,6 @@ jobs:
           TEXT1: ${{secrets.TEXT1}}
           TEXT2: ${{secrets.TEXT2}}
           TEXT3: ${{secrets.TEXT3}}
-        run: echo "Environment variables set"
-      - 
-        name: Test Selenium
         run: |
           pip install -r requirements.txt
           python3 main.py

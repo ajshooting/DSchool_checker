@@ -7,7 +7,6 @@ from time import sleep
 import os
 
 
-
 url = str(os.environ.get("URL"))
 id = str(os.environ.get("ID"))
 password = str(os.environ.get("PASSWORD"))
@@ -24,13 +23,10 @@ text2 = str(os.environ.get("TEXT2"))
 text3 = str(os.environ.get("TEXT3"))
 
 
-
 # --- begin program ---
 options = Options()
 options.add_argument('--headless')
 driver = webdriver.Chrome(options=options)
-
-
 
 
 # -- login --

@@ -67,6 +67,7 @@ def plot_3d_graph(aggregated_data, interval=30):
 
 # ここだよ
 file_path = "data.txt"
+format_file(file_path)
 data = read_data(file_path)
 aggregated_data = aggregate_data(data, interval=interval)
 plot_3d_graph(aggregated_data, interval=interval)

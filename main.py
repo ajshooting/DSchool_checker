@@ -23,43 +23,52 @@ text2 = str(os.environ.get("TEXT2"))
 text3 = str(os.environ.get("TEXT3"))
 
 
-# --- begin program ---
-options = Options()
-options.add_argument('--headless')
-driver = webdriver.Chrome(options=options)
+def main():
+    # --- begin program ---
+    options = Options()
+    options.add_argument('--headless')
+    driver = webdriver.Chrome(options=options)
 
 
-# -- login --
-driver.get(url)
-driver.implicitly_wait(5)
-driver.find_element(By.XPATH, id_xpath).send_keys(id)
-driver.find_element(By.XPATH, pass_xpath).send_keys(password)
-driver.find_element(By.XPATH, login_xpath).click()
+    # -- login --
+    driver.get(url)
+    driver.implicitly_wait(5)
+    driver.find_element(By.XPATH, id_xpath).send_keys(id)
+    driver.find_element(By.XPATH, pass_xpath).send_keys(password)
+    driver.find_element(By.XPATH, login_xpath).click()
 
-# -- get info --
-sleep(1)
+    # -- get info --
+    sleep(1)
 
-line_notify_api = "https://notify-api.line.me/api/notify"
-headers = {"Authorization": f"Bearer {line_notify_token}"}
+    line_notify_api = "https://notify-api.line.me/api/notify"
+    headers = {"Authorization": f"Bearer {line_notify_token}"}
 
-try:
-    table = driver.find_element(By.XPATH, calendar_xpath)
-    rows = table.find_elements(By.TAG_NAME, "tr")
-    for row_idx, row in enumerate(rows):
-        cells = row.find_elements(By.TAG_NAME, "td")
-        for col_idx, cell in enumerate(cells):
-            classes = cell.get_attribute("class")
-            if classes and word_1 in classes:
-                m = text1 + str(row_idx - 1) + "日]" + str(col_idx + 8) + "時~"
-                found = True
-                data = {"message": m}
-                requests.post(line_notify_api, headers=headers, data=data)
-            # if classes and word2 in classes:
-            #     m = text2 + str(row_idx-1) + "日]" + str(col_idx + 8) + "時~"
-            # if classes and word3 in classes:
-            #     m = text3 + str(row_idx-1) + "日]" + str(col_idx + 8) + "時~"
-            #     found = True
-    # if found:
-    #     print("")
-except:
-    print("e?")
+    try:
+        table = driver.find_element(By.XPATH, calendar_xpath)
+        rows = table.find_elements(By.TAG_NAME, "tr")
+        for row_idx, row in enumerate(rows):
+            cells = row.find_elements(By.TAG_NAME, "td")
+            for col_idx, cell in enumerate(cells):
+                classes = cell.get_attribute("class")
+                if classes and word_1 in classes:
+                    m = text1 + str(row_idx - 1) + "日]" + str(col_idx + 8) + "時~"
+                    found = True
+                    data = {"message": m}
+                    requests.post(line_notify_api, headers=headers, data=data)
+                # if classes and word2 in classes:
+                #     m = text2 + str(row_idx-1) + "日]" + str(col_idx + 8) + "時~"
+                # if classes and word3 in classes:
+                #     m = text3 + str(row_idx-1) + "日]" + str(col_idx + 8) + "時~"
+                #     found = True
+        # if found:
+        #     print("")
+    except:
+        print("e?")
+
+    driver.quit()
+
+
+if __name__ == "__main__":
+    for i in range(5):
+        main()
+        sleep(120)

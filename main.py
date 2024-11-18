@@ -1,12 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-import chromedriver_binary
+import chromedriver_autoinstaller
 import requests
 from time import sleep
 import sys
 import os
 
+# 自動的にDriverをインストール！自動！自動だよ！！嬉しいね！！！
+chromedriver_autoinstaller.install()
 
 url = str(os.environ.get("URL"))
 id = str(os.environ.get("ID"))
@@ -28,6 +30,8 @@ def main():
     # --- begin program ---
     options = Options()
     options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome(options=options)
 
     # -- login --

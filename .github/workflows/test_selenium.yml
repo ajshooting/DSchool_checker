@@ -26,7 +26,7 @@ jobs:
       - 
         name: Install Package
         run: |
-          pip install chromedriver-binary==129.0.*
+          pip install chromedriver-binary==131.0.*
           pip install selenium
       - 
         name: Test Selenium

@@ -72,7 +72,9 @@ if __name__ == "__main__":
     for i in range(10):
         try:
             main()
+            print("success!", file=sys.stderr)
         except Exception as e:
-            print(f"Error: {e}", file=sys.stderr)
-            print(e)
+            print(f"::error ::Error: {e}")  # GitHub Actionsのエラーログに出力
+            print(e, file=sys.stderr)  # 標準エラー出力にも表示
+            continue
         sleep(60)

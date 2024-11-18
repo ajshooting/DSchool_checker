@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 import chromedriver_binary
 import requests
 from time import sleep
+import sys
 import os
 
 
@@ -26,9 +27,8 @@ text3 = str(os.environ.get("TEXT3"))
 def main():
     # --- begin program ---
     options = Options()
-    options.add_argument('--headless')
+    options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
-
 
     # -- login --
     driver.get(url)
@@ -69,9 +69,10 @@ def main():
 
 
 if __name__ == "__main__":
-    for i in range(5):
+    for i in range(10):
         try:
             main()
-        except:
-            pass
-        sleep(120)
+        except Exception as e:
+            print(f"Error: {e}", file=sys.stderr)
+            print(e)
+        sleep(60)

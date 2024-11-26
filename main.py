@@ -81,4 +81,7 @@ if __name__ == "__main__":
             print(f"::error ::Error: {e}")  # GitHub Actionsのエラーログに出力
             print(e, file=sys.stderr)  # 標準エラー出力にも表示
             continue
-        sleep(60)
+        sleep(50)
+
+    // エラーならここで発火する、これで安心だね！
+    main()

@@ -66,7 +66,7 @@ def plot_3d_graph(aggregated_data, interval=30):
 
 
 # ここだよ
-file_path = "data.txt"
+file_path = "data20241214.txt"
 format_file(file_path)
 data = read_data(file_path)
 aggregated_data = aggregate_data(data, interval=interval)
